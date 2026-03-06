@@ -55,7 +55,7 @@ class ApplicationMailer < ActionMailer::Base
   protected
 
   def set_sender_params
-    sender_settings = @user.mailer_settings
+    sender_settings = @user.account.mailer_settings
     mail.delivery_method.settings.merge!(settings.symbolize_keys)
   end
 end
