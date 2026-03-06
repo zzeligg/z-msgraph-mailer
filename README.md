@@ -55,6 +55,14 @@ class ApplicationMailer < ActionMailer::Base
   protected
 
   def set_sender_params
+    # `@user.account.mailer_settings` contains:
+    # {
+    #   sender_email: "someone@example.org",      # one of the user's authorized sender email address 
+    #   client_id: "SOME_OTHER_CLIENT_ID",
+    #   tenant_id: "SOME_OTHER_TENANT_ID",
+    #   client_secret: "SOME_OTHER_CLIENT_SECRET",
+    #   save_to_sent_items: false
+    # }
     sender_settings = @user.account.mailer_settings
     mail.delivery_method.settings.merge!(settings.symbolize_keys)
   end
